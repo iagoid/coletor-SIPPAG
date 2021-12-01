@@ -39,10 +39,10 @@ func ColetarInformacoesPortarias() {
 		}
 
 		go gerarURLELocalDeArmazenamento(portarias, siglaInstituicao, canal)
+	}
 
-		for linkLocal := range canal {
-			baixarArquivos(linkLocal.LocalArmazenamento, linkLocal.URL)
-		}
+	for linkLocal := range canal {
+		go baixarArquivos(linkLocal.LocalArmazenamento, linkLocal.URL)
 	}
 	close(canal)
 }
