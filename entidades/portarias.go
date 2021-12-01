@@ -1,15 +1,15 @@
-package entidade
+package entidades
 
 type Portarias struct {
 	Data struct {
 		Results []struct {
 			Portaria struct {
-				ID          int    `json:"id"`
+				Numero      uint   `json:"numero"`
 				Interessado string `json:"interessado"`
 				DataEfetiva struct {
 					Date struct {
 						Month string `json:"month"`
-						Year  int    `json:"year"`
+						Year  uint   `json:"year"`
 						Day   string `json:"day"`
 					} `json:"date"`
 				} `json:"dataEfetiva"`
@@ -18,8 +18,8 @@ type Portarias struct {
 				Hash string `json:"hash"`
 			} `json:"assinatura"`
 		} `json:"results"`
-		Page  int `json:"page"`
-		Size  int `json:"size"`
-		Total int `json:"total"`
+		Page  uint `json:"page"`
+		Size  uint `json:"size"`
+		Total uint `json:"total"`
 	} `json:"data"`
 }
