@@ -27,6 +27,8 @@ func gerarURLELocalDeArmazenamento(portarias entidades.Portarias, siglaInstituic
 				diretorio, siglaInstituicao, ano, portaria.Portaria.Numero, portaria.Assinatura.Hash)
 
 			linkElocal := entidades.URLELocalDeArmazenamento{URL: url, LocalArmazenamento: localArmazenamento}
+
+			time.Sleep(time.Second * 5)
 			canal <- linkElocal
 		}
 	}
