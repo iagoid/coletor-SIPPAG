@@ -2,6 +2,7 @@ package main
 
 import (
 	"coletor-SIPPAG/coletor"
+	"coletor-SIPPAG/entidades"
 
 	"github.com/joho/godotenv"
 )
@@ -15,5 +16,11 @@ func init() {
 }
 
 func main() {
-	coletor.ColetarInformacoesPortarias()
+	canal := make(chan entidades.URLELocalDeArmazenamento)
+
+	go coletor.ColetarInformacoesPortarias(canal)
+
+	for c := range canal {
+		go coletor.BaixarArquivo(c.LocalArmazenamento, c.URL)
+	}
 }
